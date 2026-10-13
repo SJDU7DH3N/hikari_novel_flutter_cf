@@ -109,10 +109,6 @@ class LocalStorageService extends GetxService {
 
   Wenku8Node getWenku8Node() => Wenku8Node.values[_setting.get(kWenku8Node, defaultValue: Wenku8Node.wwwWenku8Net.index)];
 
-  void setRelayHost(String value) => _setting.put(kRelayHost, value);
-
-  String getRelayHost() => _setting.get(kRelayHost, defaultValue: CfWorkerNode.defaultRelayHost);
-
   ReaderDirection getReaderDirection() => ReaderDirection.values[_reader.get(kReaderDirection, defaultValue: ReaderDirection.upToDown.index)];
 
   void setReaderDirection(ReaderDirection value) => _reader.put(kReaderDirection, value.index);
