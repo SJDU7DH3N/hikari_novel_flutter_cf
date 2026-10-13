@@ -35,6 +35,7 @@ void main() async {
 
   _init();
   await Jiffy.setLocale(Util.getCurrentLocale().toString());
+  CfWorkerNode.relayHost = LocalStorageService.instance.getRelayHost(); //注入自定义中继域名
   await RustLib.init();
   await ApiService.instance.initCookie();
 
