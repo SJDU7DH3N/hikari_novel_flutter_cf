@@ -88,6 +88,9 @@ jobs:
       - name: Flutter Doctor
         run: flutter doctor
 
+      - name: Install NDK 26.3（btls-sys/boringssl 与 NDK r28 头文件不兼容）
+        run: sdkmanager "ndk;26.3.11579264"
+
       - name: Flutter pub get
         run: flutter pub get
 
