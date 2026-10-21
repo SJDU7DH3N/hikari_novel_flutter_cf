@@ -7,21 +7,24 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      ndk: r25b
     scripts:
-      - name: Install build tools (CMake & Ninja)
+      - name: Full Build Pipeline (Setup & Compile)
         script: |
+          set -e
+          echo "=== 1. Installing build tools (CMake & Ninja) ==="
           brew install cmake ninja
-      - name: Install Rust and Android targets
-        script: |
+
+          echo "=== 2. Installing Rust and Android targets ==="
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
           export PATH="$HOME/.cargo/bin:$PATH"
           rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
-      - name: Get Flutter packages
-        script: |
+
+          echo "=== 3. Getting Flutter packages ==="
           export PATH="$HOME/.cargo/bin:$PATH"
           flutter pub get
-      - name: Build APK
-        script: |
+
+          echo "=== 4. Building Release APK ==="
           export PATH="$HOME/.cargo/bin:$PATH"
           flutter build apk --release
     artifacts:
