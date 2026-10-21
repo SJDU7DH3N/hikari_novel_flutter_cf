@@ -8,6 +8,9 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Install build tools (CMake & Ninja)
+        script: |
+          brew install cmake ninja
       - name: Install Rust and Android targets
         script: |
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
