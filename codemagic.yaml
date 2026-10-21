@@ -8,9 +8,16 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Install Rust
+        script: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       - name: Get Flutter packages
-        script: flutter pub get
+        script: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          flutter pub get
       - name: Build APK
-        script: flutter build apk --release
+        script: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          flutter build apk --release
     artifacts:
       - build/**/outputs/**/*.apk
